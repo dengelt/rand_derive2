@@ -42,7 +42,7 @@ pub(crate) fn transform(input: DeriveInput) -> TokenStream {
         // Set the attribute unreachable code here, since there is a field attribute 'panic' in which
         // the type can not be generated
         #[allow(unreachable_code)]
-        impl rand::distributions::Distribution<#name> for rand::distributions::Standard {
+        impl rand::distr::Distribution<#name> for rand::distr::StandardUniform {
             fn sample<R: rand::Rng + ?Sized>(&self, rng: &mut R) -> #name {
                 use rand::Rng;
 
@@ -219,7 +219,7 @@ fn generate_value(ty_str: &str, customizes: &[Customize]) -> TokenStream {
     } else if ty_str == "String" {
         quote! {
             rng
-                .sample_iter(&rand::distributions::Alphanumeric)
+                .sample_iter(&rand::distr::Alphanumeric)
                 .take(10)
                 .map(char::from)
                 .collect()

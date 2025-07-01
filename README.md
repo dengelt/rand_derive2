@@ -4,7 +4,7 @@
 [![Build Status](https://img.shields.io/github/workflow/status/jasperav/rand_derive2/CI/master)](https://github.com/jasperav/rand_derive2/actions)
 
 Derive macro for generating random types with the `rand` crate. 
-It will implement the `rand::distributions::Standard` for a given type.
+It will implement the `rand::distr::StandardUniform` for a given type.
 
 ## Usage
 
@@ -15,7 +15,7 @@ Check out the example crate or follow the instructions below.
 ```toml
 [dependencies]
 rand_derive2 = "0.1"
-rand = "0.8"
+rand = "0.9.1"
 ```
 
 2. Import the macro somewhere in your file where your type is:
@@ -84,7 +84,7 @@ created somewhere, but where? It could be _maybe_ done by leaking the type that 
 - More types from the standard library covered
 - Functions documented
 - Custom trait type/method names
-- Weighted randomization (currently only supports `rand::distributions::Standard`)
+- Weighted randomization (currently only supports `rand::distr::StandardUniform`)
 
 #### License
 
