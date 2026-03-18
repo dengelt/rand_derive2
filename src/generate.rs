@@ -14,8 +14,8 @@ pub(crate) fn transform(input: DeriveInput) -> TokenStream {
     let name = &input.ident;
     let mut trait_methods = TraitMethods::new();
     let ts = match input.data {
-        Data::Struct(ds) => crate::gen_struct::generate(name, &mut trait_methods, ds),
-        Data::Enum(de) => crate::gen_enum::generate(name, &mut trait_methods, de),
+        Data::Struct(ds) => crate::generate_struct::generate(name, &mut trait_methods, ds),
+        Data::Enum(de) => crate::generate_enum::generate(name, &mut trait_methods, de),
         Data::Union(_) => panic!("Unions are currently not supported"),
     };
 
@@ -43,8 +43,8 @@ pub(crate) fn transform(input: DeriveInput) -> TokenStream {
         // the type can not be generated
         #[allow(unreachable_code)]
         impl rand::distr::Distribution<#name> for rand::distr::StandardUniform {
-            fn sample<R: rand::Rng + ?Sized>(&self, rng: &mut R) -> #name {
-                use rand::Rng;
+            fn sample<R: rand::RngExt + ?Sized>(&self, rng: &mut R) -> #name {
+                use rand::RngExt;
 
                 #ts
             }
@@ -122,7 +122,7 @@ fn generated_values(
             }
         } else {
             quote! {
-                if rng.gen() {
+                if rng.random() {
                     Some(#ts_value)
                 } else {
                     None
@@ -180,7 +180,7 @@ fn add_to_trait_methods(
         generate_ty_name.to_string(),
         quote! {
             #[doc = #doc_msg]
-            fn #generate_ty_name<R: rand::Rng + ?Sized>(rng: &mut R) -> #ty;
+            fn #generate_ty_name<R: rand::RngExt + ?Sized>(rng: &mut R) -> #ty;
         },
     );
 
@@ -230,7 +230,7 @@ fn generate_value(ty_str: &str, customizes: &[Customize]) -> TokenStream {
         }
     } else {
         quote! {
-            rng.gen()
+            rng.random()
         }
     }
 }

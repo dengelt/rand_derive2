@@ -1,4 +1,4 @@
-use crate::gen::{
+use crate::generate::{
     generated_values_for_named_fields, generated_values_for_unnamed_fields, TraitMethods,
 };
 use proc_macro2::{Ident, TokenStream};

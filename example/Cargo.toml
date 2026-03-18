@@ -2,9 +2,9 @@
 name = "rand_derive2-example"
 version = "0.1.0"
 authors = ["Jasper Visser <jasperav@hotmail.com>"]
-edition = "2021"
+edition = "2024"
 
 [dependencies]
-rand = "0.9.1"
+rand = "0.10.0"
 rand_derive2 = { path = "../../rand_derive2" }
 uuid = { version = "1.2", features = ["v4"] }

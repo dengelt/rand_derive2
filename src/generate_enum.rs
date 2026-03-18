@@ -1,4 +1,4 @@
-use crate::gen::{
+use crate::generate::{
     generated_values_for_named_fields, generated_values_for_unnamed_fields, TraitMethods,
 };
 use crate::parser::{attrs_to_customizes, has_customize, Customize};
@@ -53,7 +53,7 @@ pub fn generate(name: &Ident, trait_methods: &mut TraitMethods, de: DataEnum) ->
         })
         .collect::<Vec<_>>();
     quote! {
-        let random_val = rng.gen_range(0..#variants_len);
+        let random_val = rng.random_range(0..#variants_len);
 
         match random_val {
             #(#range => #ts,)*

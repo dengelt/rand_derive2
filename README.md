@@ -14,8 +14,8 @@ Check out the example crate or follow the instructions below.
 
 ```toml
 [dependencies]
-rand_derive2 = "0.1"
-rand = "0.9.1"
+rand_derive2 = "0.2"
+rand = "0.10.0"
 ```
 
 2. Import the macro somewhere in your file where your type is:
@@ -71,7 +71,7 @@ Place `rand_derive(fixed = "MY_VALUE")` above a field to make it generate the fi
 
 ### How it works 
 #### Structs
-It calls `rng.gen()` on all the fields.
+It calls `rng.random()` on all the fields.
 #### Enums 
 It will generate a random variant.
 

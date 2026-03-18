@@ -2,7 +2,7 @@
 name = "rand_derive2"
 version = "0.2.0"
 authors = ["Jasper Visser <jasperav@hotmail.com>"]
-edition = "2021"
+edition = "2024"
 description = "Generate customizable random types with the rand crate"
 readme = "README.md"
 keywords = ["rand", "random", "generate", "macro", "derive"]

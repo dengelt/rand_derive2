@@ -47,15 +47,15 @@ impl CustomRand {
 }
 
 impl TestDataProviderForCustomRand for CustomRand {
-    fn generate_field0<R: rand::Rng + ?Sized>(_: &mut R) -> &'static str {
+    fn generate_field0<R: rand::RngExt + ?Sized>(_: &mut R) -> &'static str {
         CustomRand::STRING
     }
 
-    fn generate_field1<R: rand::Rng + ?Sized>(_: &mut R) -> Vec<i32> {
+    fn generate_field1<R: rand::RngExt + ?Sized>(_: &mut R) -> Vec<i32> {
         CustomRand::vec()
     }
 
-    fn generate_field2<R: rand::Rng + ?Sized>(_: &mut R) -> UnitStruct {
+    fn generate_field2<R: rand::RngExt + ?Sized>(_: &mut R) -> UnitStruct {
         UnitStruct
     }
 }
